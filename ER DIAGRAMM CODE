@@ -1,0 +1,58 @@
+erDiagram
+    PATIENTEN {
+        int PatientenID PK
+        string Vorname
+        string Nachname
+        date Geburtstag
+        string Geschlecht
+        string Adresse
+        string[] Telefonnummer
+        string KraKa
+    }
+    
+    AERZTE {
+        int PersonalID PK
+        string Vorname
+        string Nachname
+        string Fachgebiet
+        int StationsID FK
+        string Telefonnummer
+    }
+    
+    STATIONEN {
+        int StationsID PK
+        string Stationsname
+        string Fachgebiet
+    }
+    
+    BEHANDLUNGEN {
+        int BehandlungsID PK
+        int PatientenID FK
+        int ArztID FK
+        string Diagnose
+        date Datum
+    }
+    
+    MEDIKAMENTE {
+        int MedikamentenID PK
+        string Produktname
+        string Dosis
+        string Nebenwirkungen
+        bool Rezeptpflichtig
+    }
+    
+    VERSCHREIBUNGEN {
+        int VerschreibungsID PK
+        int PatientenID FK
+        int ArztID FK
+        int MedikamentID FK
+        date Startdatum
+        date Enddatum
+    }
+
+    PATIENTEN ||--o{ BEHANDLUNGEN : "receives"
+    AERZTE ||--o{ BEHANDLUNGEN : "provides"
+    AERZTE }|..|| STATIONEN : "belongs to"
+    PATIENTEN ||--o{ VERSCHREIBUNGEN : "has"
+    AERZTE ||--o{ VERSCHREIBUNGEN : "prescribes"
+    MEDIKAMENTE ||--o{ VERSCHREIBUNGEN : "includes"
