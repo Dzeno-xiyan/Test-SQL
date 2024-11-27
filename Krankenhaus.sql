@@ -1,3 +1,13 @@
+Erklärung:
+
+CREATE TABLE: Erstellt eine neue Tabelle mit den angegebenen Spalten und Datentypen.
+INSERT INTO: Fügt einen neuen Datensatz in eine Tabelle ein.
+PRIMARY KEY: Definiert die eindeutige Kennung einer Zeile.
+AUTOINCREMENT: Die ID wird automatisch erhöht für jeden neuen Eintrag.
+FOREIGN KEY: Definiert eine Beziehung zwischen zwei Tabellen.
+
+    
+
 CREATE TABLE Patienten (
     patient_id INTEGER PRIMARY KEY AUTOINCREMENT,
     nachname TEXT,
@@ -18,6 +28,17 @@ CREATE TABLE Diagnosen (
     diagnose_id INTEGER PRIMARY KEY AUTOINCREMENT,
     bezeichnung TEXT
 );
+
+
+CREATE TABLE Laborwerte (
+    laborwert_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    patient_id INTEGER,
+    untersuchungsdatum DATE,
+    wert REAL,
+    einheit TEXT,
+    FOREIGN KEY(patient_id) REFERENCES Patienten(patient_id)
+);
+
 
 CREATE TABLE Behandlungen (
     behandlung_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -82,3 +103,13 @@ INSERT INTO Verschreibungen (behandlung_id, medikament_id, dosis)
 VALUES (1, 1, '2 Tabletten täglich');
 INSERT INTO Verschreibungen (behandlung_id, medikament_id, dosis)
 VALUES (2, 2, 'Nach Bedarf');
+
+
+ALTER TABLE Patienten
+ADD COLUMN fieber REAL,
+ADD COLUMN diabetes BOOLEAN,
+ADD COLUMN allergien TEXT;
+
+
+
+
