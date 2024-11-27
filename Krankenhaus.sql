@@ -110,4 +110,16 @@ VALUES (1, '2023-11-22', 80, 'mg/dl'); -- Beispiel: Blutzuckerwert
 INSERT INTO Laborwerte (patient_id, untersuchungsdatum, wert, einheit)
 VALUES (2, '2023-11-22', 40, 'mg/dl'); -- Beispiel: Blutzuckerwert
 
+-- Veränderung der Behandlung
+ALTER TABLE Behandlungen
+ADD COLUMN testzweck TEXT;
+
+UPDATE Behandlungen
+SET testzweck = 'Routineuntersuchung'
+WHERE behandlung_id = 1;
+
+UPDATE Behandlungen
+SET testzweck = 'Notfall'
+WHERE behandlung_id = 2;
+
 
