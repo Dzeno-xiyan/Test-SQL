@@ -5,8 +5,29 @@ INSERT INTO: Fügt einen neuen Datensatz in eine Tabelle ein.
 PRIMARY KEY: Definiert die eindeutige Kennung einer Zeile.
 AUTOINCREMENT: Die ID wird automatisch erhöht für jeden neuen Eintrag.
 FOREIGN KEY: Definiert eine Beziehung zwischen zwei Tabellen.
+REFERENCES ist ein Schlüsselwort in SQL, das verwendet wird, um eine Beziehung zwischen zwei Tabellen herzustellen. Diese Beziehung wird als Fremdschlüsselbeziehung bezeichnet.
+Fremdschlüssel: In der Tabelle "Behandlungen" wird eine Spalte (z.B. patient_id) definiert.
+Verweis auf den Primärschlüssel: Diese Spalte wird mit REFERENCES mit dem Primärschlüssel einer anderen Tabelle (in diesem Fall patient_id in der Tabelle "Patienten") verknüpft.
+Referenzielle Integrität: Durch diese Verknüpfung wird sichergestellt, dass in der Spalte "patient_id" der Tabelle "Behandlungen" nur Werte vorkommen, die auch als Primärschlüssel 
+in der Tabelle "Patienten" existieren. Das heißt, du kannst in der Tabelle "Behandlungen" keinen Patienten angeben, der nicht in der Tabelle "Patienten" vorhanden ist.    
+----------------------------------------------------------------------
+    Beispiel:
+CREATE TABLE Patienten (
+    patient_id INTEGER PRIMARY KEY,
+    name TEXT
+);
 
-    
+CREATE TABLE Behandlungen (
+    behandlung_id INTEGER PRIMARY KEY,
+    patient_id INTEGER,
+    FOREIGN KEY(patient_id) REFERENCES Patienten(patient_id)
+);
+
+patient_id in der Tabelle "Behandlungen" ist der Fremdschlüssel.
+REFERENCES Patienten(patient_id) besagt, dass dieser Fremdschlüssel auf den Primärschlüssel patient_id in der Tabelle "Patienten" verweist.
+
+----------------------------------------------------------------------    
+----------------------------------------------------------------------
 
 CREATE TABLE Patienten (
     patient_id INTEGER PRIMARY KEY AUTOINCREMENT,
