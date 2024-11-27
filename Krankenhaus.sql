@@ -104,13 +104,10 @@ VALUES (1, 1, '2 Tabletten täglich');
 INSERT INTO Verschreibungen (behandlung_id, medikament_id, dosis)
 VALUES (2, 2, 'Nach Bedarf');
 
-
-ALTER TABLE Patienten
-ADD COLUMN fieber REAL,
-ADD COLUMN diabetes BOOLEAN,
-ADD COLUMN allergien TEXT;
-
-
+-- Laborwerte
 INSERT INTO Laborwerte (patient_id, untersuchungsdatum, wert, einheit)
 VALUES (1, '2023-11-22', 80, 'mg/dl'); -- Beispiel: Blutzuckerwert
+INSERT INTO Laborwerte (patient_id, untersuchungsdatum, wert, einheit)
+VALUES (2, '2023-11-22', 40, 'mg/dl'); -- Beispiel: Blutzuckerwert
+
 
