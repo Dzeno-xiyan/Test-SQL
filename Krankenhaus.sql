@@ -111,5 +111,6 @@ ADD COLUMN diabetes BOOLEAN,
 ADD COLUMN allergien TEXT;
 
 
-
+INSERT INTO Laborwerte (patient_id, untersuchungsdatum, wert, einheit)
+VALUES (1, '2023-11-22', 80, 'mg/dl'); -- Beispiel: Blutzuckerwert
 
