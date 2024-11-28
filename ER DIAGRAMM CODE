@@ -56,3 +56,27 @@ erDiagram
     PATIENTEN ||--o{ VERSCHREIBUNGEN : "has"
     AERZTE ||--o{ VERSCHREIBUNGEN : "prescribes"
     MEDIKAMENTE ||--o{ VERSCHREIBUNGEN : "includes"
+
+
+Entitäten und ihre Attribute
+PATIENTEN: Enthält Informationen zu einzelnen Patienten wie ID, Name, Geburtsdatum, Geschlecht, Adresse, Telefonnummer und Krankenkasse.
+AERZTE: Speichert Daten über Ärzte, einschließlich ID, Name, Fachgebiet, Station und Telefonnummer.
+MEDIKAMENTE: Enthält Informationen zu Medikamenten wie ID, Produktname, Dosis und Nebenwirkungen sowie ob das Medikament rezeptpflichtig ist.
+BEHANDLUNGEN: Dokumentiert Behandlungen mit Angaben zur ID, dem behandelnden Arzt, dem Patienten, der Diagnose und dem Datum.
+VERSCHREIBUNGEN: Verknüpft Patienten, Ärzte, Medikamente und Behandlungen, indem sie Informationen über verschriebene Medikamente, Start- und Enddatum speichert.
+STATIONEN: Enthält Informationen zu den verschiedenen Stationen im Krankenhaus, wie ID, Name und Fachgebiet.
+Beziehungen zwischen den Entitäten
+PATIENTEN - BEHANDLUNGEN: Ein Patient kann mehrere Behandlungen erhalten (eins-zu-viele).
+AERZTE - BEHANDLUNGEN: Ein Arzt kann mehrere Behandlungen durchführen (eins-zu-viele).
+AERZTE - STATIONEN: Ein Arzt kann zu mehreren Stationen gehören (viele-zu-viele). Die gestrichelte Linie deutet möglicherweise auf eine schwächere oder optionale Beziehung hin.
+PATIENTEN - VERSCHREIBUNGEN: Ein Patient kann mehrere Verschreibungen erhalten (eins-zu-viele).
+AERZTE - VERSCHREIBUNGEN: Ein Arzt kann mehrere Verschreibungen ausstellen (eins-zu-viele).
+MEDIKAMENTE - VERSCHREIBUNGEN: Ein Medikament kann in mehreren Verschreibungen enthalten sein (eins-zu-viele).
+Schlüssel und Fremdschlüssel
+Primärschlüssel: Jede Entität hat einen eindeutigen Primärschlüssel, der die Datensätze innerhalb der Tabelle identifiziert (z.B. PatientenID, ArztID, MedikamentenID).
+Fremdschlüssel: Fremdschlüssel dienen dazu, Beziehungen zwischen Tabellen herzustellen. Sie verweisen auf den Primärschlüssel einer anderen Tabelle (z.B. ArztID in der Tabelle BEHANDLUNGEN verweist auf den Primärschlüssel in der Tabelle AERZTE).
+Interpretation der Beziehungen
+Ein Patient kann über mehrere Behandlungen verfügen, die von verschiedenen Ärzten durchgeführt werden.
+Ein Arzt kann mehrere Patienten behandeln und zu verschiedenen Stationen gehören.
+Eine Behandlung kann mehrere Medikamente beinhalten.
+Ein Medikament kann in verschiedenen Behandlungen verschrieben werden.
