@@ -8,8 +8,8 @@ CREATE TABLE CD (
     Zustand VARCHAR(20)
 );
 
-CREATE TABLE Schüler (
-    Schüler_ID INT PRIMARY KEY,
+CREATE TABLE Freunde (
+    Freunde_ID INT PRIMARY KEY,
     Vorname VARCHAR(50),
     Nachname VARCHAR(50),
     Klasse VARCHAR(10)
@@ -18,11 +18,11 @@ CREATE TABLE Schüler (
 CREATE TABLE Ausleihe (
     Ausleihe_ID INT PRIMARY KEY,
     CD_ID INT,
-    Schüler_ID INT,
+    Freunde_ID INT,
     Ausleihdatum DATE,
     Rückgabedatum DATE,
     FOREIGN KEY (CD_ID) REFERENCES CD(CD_ID),
-    FOREIGN KEY (Schüler_ID) REFERENCES Schüler(Schüler_ID)
+    FOREIGN KEY (Freunde_ID) REFERENCES Freunde(Freunde_ID)
 );
 
 
@@ -34,7 +34,7 @@ VALUES
     ('Abbey Road', 'The Beatles', 'Rock', 1969, 'Gut'),
     ('Rumours', 'Fleetwood Mac', 'Soft Rock', 1977, 'Sehr gut');
 
-INSERT INTO Schüler (Vorname, Nachname, Klasse)
+INSERT INTO Freunde (Vorname, Nachname, Klasse)
 VALUES
     ('Max', 'Mustermann', '10a'),
     ('Anna', 'Meier', '11b'),
@@ -42,7 +42,7 @@ VALUES
     ('David', 'Müller', '12a'),
     ('Sophia', 'Neumann', '10b');
 
-INSERT INTO Ausleihe (CD_ID, Schüler_ID, Ausleihdatum, Rückgabedatum)
+INSERT INTO Ausleihe (CD_ID, Freunde_ID, Ausleihdatum, Rückgabedatum)
 VALUES
     (1, 1, '2023-11-01', '2023-11-10'),
     (2, 2, '2023-11-05', '2023-11-15'),
