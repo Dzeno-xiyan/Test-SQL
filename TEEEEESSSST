@@ -1,2 +1,52 @@
 
-TEEEEEEEEEEEEEEEEEEEEEEEEEEEEESTTTT
+CREATE TABLE CD (
+    CD_ID INT PRIMARY KEY,
+    Titel VARCHAR(100),
+    Interpret VARCHAR(100),
+    Genre VARCHAR(50),
+    Erscheinungsjahr INT,
+    Zustand VARCHAR(20)
+);
+
+CREATE TABLE Schüler (
+    Schüler_ID INT PRIMARY KEY,
+    Vorname VARCHAR(50),
+    Nachname VARCHAR(50),
+    Klasse VARCHAR(10)
+);
+
+CREATE TABLE Ausleihe (
+    Ausleihe_ID INT PRIMARY KEY,
+    CD_ID INT,
+    Schüler_ID INT,
+    Ausleihdatum DATE,
+    Rückgabedatum DATE,
+    FOREIGN KEY (CD_ID) REFERENCES CD(CD_ID),
+    FOREIGN KEY (Schüler_ID) REFERENCES Schüler(Schüler_ID)
+);
+
+
+INSERT INTO CD (Titel, Interpret, Genre, Erscheinungsjahr, Zustand)
+VALUES
+    ('Nevermind', 'Nirvana', 'Grunge', 1991, 'Gut'),
+    ('The Dark Side of the Moon', 'Pink Floyd', 'Progressive Rock', 1973, 'Sehr gut'),
+    ('Thriller', 'Michael Jackson', 'Pop', 1982, 'Gebraucht'),
+    ('Abbey Road', 'The Beatles', 'Rock', 1969, 'Gut'),
+    ('Rumours', 'Fleetwood Mac', 'Soft Rock', 1977, 'Sehr gut');
+
+INSERT INTO Schüler (Vorname, Nachname, Klasse)
+VALUES
+    ('Max', 'Mustermann', '10a'),
+    ('Anna', 'Meier', '11b'),
+    ('Lisa', 'Schmidt', '9c'),
+    ('David', 'Müller', '12a'),
+    ('Sophia', 'Neumann', '10b');
+
+INSERT INTO Ausleihe (CD_ID, Schüler_ID, Ausleihdatum, Rückgabedatum)
+VALUES
+    (1, 1, '2023-11-01', '2023-11-10'),
+    (2, 2, '2023-11-05', '2023-11-15'),
+    (3, 3, '2023-11-02', NULL),
+    (4, 4, '2023-11-03', '2023-11-12'),
+    (5, 5, '2023-11-04', '2023-11-14');
+
