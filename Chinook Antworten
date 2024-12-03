@@ -1,0 +1,62 @@
+SELECT 
+    p.name AS PlaylistId,
+    COUNT(*) AS TrackCount
+FROM 
+    Playlists p
+JOIN playlist_track pt ON p.PlaylistId = pt.PlaylistId
+GROUP BY p.PlaylistId;
+--------------------------------
+SELECT 
+    t.name
+FROM 
+    tracks t
+LEFT JOIN playlist_track pt ON t.TrackId = pt.TrackId
+WHERE pt.PlaylistId IS NULL;
+--------------------------------
+SELECT 
+    t.Name,
+    t.Milliseconds,
+    pt.PlaylistId
+FROM 
+    Tracks t
+LEFT JOIN playlist_track pt ON t.TrackId = pt.TrackId
+ORDER BY t.Milliseconds DESC;
+------------------------------------------
+
+SELECT
+  t.Name,
+  t.Milliseconds,
+  pt.PlaylistId
+FROM
+  Tracks t
+LEFT JOIN playlist_track pt ON t.TrackId = pt.TrackId
+GROUP BY
+  t.Name,
+  t.Milliseconds
+ORDER BY
+  t.Milliseconds DESC;
+
+----------------------------------------------------------------
+
+
+WITH CustomerInNewYork AS (
+    SELECT 
+        CustomerId
+    FROM 
+        Customers
+    WHERE 
+        State = 'New York'
+)
+SELECT 
+    AVG(i.Total) AS AvgInvoiceAmount
+FROM 
+    Invoices i
+JOIN CustomerInNewYork c ON i.CustomerId = c.CustomerId;
+
+---------------------------------------------------
+SELECT * 
+FROM Customers
+WHERE State = 'New York';
+
+
+--------------------------------------------------
