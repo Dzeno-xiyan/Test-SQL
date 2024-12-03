@@ -60,3 +60,15 @@ WHERE State = 'New York';
 
 
 --------------------------------------------------
+
+
+SELECT *
+FROM playlists
+JOIN playlist_track USING (PlaylistId)
+JOIN tracks USING (TrackId)
+JOIN albums USING (AlbumId)
+JOIN artists USING (ArtistId)
+WHERE artists.name IN ('Black Sabbath', 'Iron Maiden', 'Judas Priest');
+
+
+------------------------------------------
