@@ -1,0 +1,109 @@
+CREATE TABLE Flugzeuge (
+    Flugzeug_ID INT PRIMARY KEY,
+    Flugzeugtyp VARCHAR(50),
+    Hersteller VARCHAR(50),
+    Sitzplätze INT
+);
+
+CREATE TABLE Flüge (
+    Flug_ID INT PRIMARY KEY,
+    Flugnummer VARCHAR(10),
+    Flugzeug_ID INT,
+    Abflugdatum DATE,
+    Abflugzeit TIME,
+    Ankunftsdatum DATE,
+    Ankunftszeit TIME,
+    FOREIGN KEY (Flugzeug_ID) REFERENCES Flugzeuge(Flugzeug_ID)
+);
+
+CREATE TABLE Fluggesellschaften (
+    Fluggesellschaft_ID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Land VARCHAR(50),
+    IATA_Code CHAR(2)
+);
+
+CREATE TABLE Passagiere (
+    Passagier_ID INT PRIMARY KEY,
+    Vorname VARCHAR(50),
+    Nachname VARCHAR(50),
+    Geburtsdatum DATE,
+    Reisepassnummer VARCHAR(20)
+);
+
+CREATE TABLE Tickets (
+    Ticket_ID INT PRIMARY KEY,
+    Flug_ID INT,
+    Passagier_ID INT,
+    Sitznummer VARCHAR(10),
+    Klasse VARCHAR(20),
+    FOREIGN KEY (Flug_ID) REFERENCES Flüge(Flug_ID),
+    FOREIGN KEY (Passagier_ID) REFERENCES Passagiere(Passagier_ID)
+);
+
+CREATE TABLE Fluggesellschaft_Flüge (
+    Fluggesellschaft_Flug_ID INT PRIMARY KEY,
+    Fluggesellschaft_ID INT,
+    Flug_ID INT,
+    FOREIGN KEY (Fluggesellschaft_ID) REFERENCES Fluggesellschaften(Fluggesellschaft_ID),
+    FOREIGN KEY (Flug_ID) REFERENCES Flüge(Flug_ID)
+);
+
+
+
+-----------------------------------------------------------
+
+
+
+INSERT INTO Flugzeuge (Flugzeug_ID, Flugzeugtyp, Hersteller, Sitzplätze)
+VALUES
+    (1, 'Airbus A320', 'Airbus', 180),
+    (2, 'Boeing 737', 'Boeing', 150),
+    (3, 'Boeing 777', 'Boeing', 350),
+    (4, 'Airbus A380', 'Airbus', 550),
+    (5, 'Bombardier CRJ200', 'Bombardier', 50);
+
+
+INSERT INTO Flüge (Flug_ID, Flugnummer, Flugzeug_ID, Abflugdatum, Abflugzeit, Ankunftsdatum, Ankunftszeit)
+VALUES
+    (101, 'LH456', 1, '2024-04-15', '10:30:00', '2024-04-15', '12:15:00'),
+    (102, 'UA123', 2, '2024-04-16', '14:00:00', '2024-04-16', '16:30:00'),
+    (103, 'BA234', 3, '2024-04-17', '08:00:00', '2024-04-17', '16:00:00'),
+    (104, 'DL567', 4, '2024-04-18', '19:00:00', '2024-04-19', '07:00:00'),
+    (105, 'AF890', 5, '2024-04-19', '12:00:00', '2024-04-19', '13:30:00');
+
+INSERT INTO Fluggesellschaften (Fluggesellschaft_ID, Name, Land, IATA_Code)
+VALUES
+    (201, 'Lufthansa', 'Deutschland', 'LH'),
+    (202, 'United Airlines', 'USA', 'UA'),
+    (203, 'British Airways', 'Vereinigtes Königreich', 'BA'),
+    (204, 'Delta Air Lines', 'USA', 'DL'),
+    (205, 'Air France', 'Frankreich', 'AF');
+
+
+INSERT INTO Passagiere (Passagier_ID, Vorname, Nachname, Geburtsdatum, Reisepassnummer)
+VALUES
+    (301, 'Max', 'Mustermann', '1980-01-01', 'AB1234567'),
+    (302, 'Anna', 'Meier', '1990-05-15', 'CD7890123'),
+    (303, 'David', 'Schmidt', '1975-11-20', 'EF4567890'),
+    (304, 'Lisa', 'Müller', '1995-03-08', 'GH1234567'),
+    (305, 'Peter', 'Schulz', '1985-07-22', 'IJ7890123');
+
+
+INSERT INTO Tickets (Ticket_ID, Flug_ID, Passagier_ID, Sitznummer, Klasse)
+VALUES
+    (401, 101, 301, '22A', 'Economy'),
+    (402, 102, 302, '15B', 'Business'),
+    (403, 103, 303, '32C', 'First'),
+    (404, 104, 304, '4A', 'Economy'),
+    (405, 105, 305, '7B', 'Business');
+
+
+INSERT INTO Fluggesellschaft_Flüge (Fluggesellschaft_Flug_ID, Fluggesellschaft_ID, Flug_ID)
+VALUES
+    (501, 201, 101),
+    (502, 202, 102),
+    (503, 203, 103),
+    (504, 204, 104),
+    (505, 205, 105);
+
